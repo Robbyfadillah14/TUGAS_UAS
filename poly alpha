@@ -1,0 +1,26 @@
+def enkripsi_poli(plaintext, kunci):
+    ciphertext = ""
+    kunci_index = 0
+
+    for karakter in plaintext:
+        if karakter.isalpha():
+            if karakter.islower():
+                offset = ord('a')
+            else:
+                offset = ord('A')
+
+            key = ord(kunci[kunci_index]) - offset
+            encrypted_char = chr(((ord(karakter) - offset + key) % 26) + offset)
+            ciphertext += encrypted_char
+            kunci_index = (kunci_index + 1) % len(kunci)
+        else:
+            ciphertext += karakter
+
+    return ciphertext
+
+# Contoh penggunaan
+pesan = "BELAJAR DARI O"
+kunci = "MERDEKA"  # Ini adalah kunci yang menghasilkan ciphertext yang Anda berikan
+
+pesan_terenkripsi = enkripsi_poli(pesan, kunci)
+print("Ciphertext:", pesan_terenkripsi)
