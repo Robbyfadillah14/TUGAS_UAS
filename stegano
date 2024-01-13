@@ -1,0 +1,16 @@
+from stegano import lsb
+from PIL import Image
+
+# Sisipkan pesan ke dalam gambar
+pesan = "Ini pesan rahasia"
+gambar_input = 'spt1.jpg'
+gambar_output = 'spt1.jpg'
+
+gambar_tersembunyi = lsb.hide(gambar_input, pesan)
+gambar_tersembunyi.save(gambar_output)
+
+# Baca pesan yang tersembunyi dari gambar
+gambar_hasil = Image.open(gambar_output)
+pesan_tersembunyi = lsb.reveal(gambar_hasil)
+
+print("Pesan tersembunyi: nama saya roby habibi", pesan_tersembunyi)
